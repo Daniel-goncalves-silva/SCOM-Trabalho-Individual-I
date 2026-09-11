@@ -1,1 +1,17 @@
+figure {
+    margin: 2rem 0;
+    text-align: center;
+}
 
+figure img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 8px;
+}
+
+figcaption {
+    margin-top: 0.75rem;
+    color: #4b5563;
+    font-size: 0.95rem;
+}
