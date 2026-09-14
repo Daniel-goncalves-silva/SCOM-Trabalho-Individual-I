@@ -1,16 +1,39 @@
-const botaoPeito = document.getElementById("botao-peito");
-const statusPeito = document.getElementById("status-peito");
-const dataPeito = document.getElementById("data-peito");
+const grupos = [
+    "peito",
+    "costas",
+    "pernas",
+    "ombros",
+    "bracos",
+    "triceps",
+    "abdomen"
+];
+
+const nomes = {
+    peito: "Peito",
+    costas: "Costas",
+    pernas: "Pernas",
+    ombros: "Ombros",
+    bracos: "Bíceps e antebraço",
+    triceps: "Tríceps",
+    abdomen: "Abdômen"
+};
 
 const tempoDescanso = 48 * 60 * 60 * 1000;
 
-function atualizarPeito() {
-    const treinoSalvo = localStorage.getItem("treinoPeito");
+function atualizarGrupo(grupo) {
+
+    const status = document.getElementById("status-" + grupo);
+    const data = document.getElementById("data-" + grupo);
+    const botao = document.querySelector(
+        '[data-grupo="' + grupo + '"]'
+    );
+
+    const treinoSalvo = localStorage.getItem("treino-" + grupo);
 
     if (treinoSalvo === null) {
-        statusPeito.textContent = "Pode treinar";
-        dataPeito.textContent = "";
-        botaoPeito.textContent = "Marcar como treinado";
+        status.textContent = "Pode treinar";
+        data.textContent = "";
+        botao.textContent = "Marcar como treinado";
         return;
     }
 
@@ -22,46 +45,115 @@ function atualizarPeito() {
     );
 
     if (agora < fimDescanso) {
-        statusPeito.textContent = "Em descanso";
 
-        dataPeito.textContent =
+        status.textContent = "Em descanso";
+
+        data.textContent =
             "Disponível novamente em: " +
             fimDescanso.toLocaleString("pt-BR");
 
-        botaoPeito.textContent = "Desfazer marcação";
-    } else {
-        statusPeito.textContent = "Pode treinar novamente";
+        botao.textContent = "Desfazer marcação";
 
-        dataPeito.textContent =
+    } else {
+
+        status.textContent = "Pode treinar novamente";
+
+        data.textContent =
             "Último treino: " +
             dataTreino.toLocaleString("pt-BR");
 
-        botaoPeito.textContent = "Marcar como treinado";
+        botao.textContent = "Marcar como treinado";
     }
 }
 
-botaoPeito.addEventListener("click", function () {
-    const treinoSalvo = localStorage.getItem("treinoPeito");
+function inicioDaSemana() {
 
-    if (treinoSalvo !== null) {
-        const dataTreino = new Date(treinoSalvo);
+    const hoje = new Date();
+
+    const dia = hoje.getDay();
+
+    const diferenca = dia === 0 ? 6 : dia - 1;
+
+    const inicio = new Date(hoje);
+
+    inicio.setDate(hoje.getDate() - diferenca);
+    inicio.setHours(0, 0, 0, 0);
+
+    return inicio;
+}
+
+function atualizarSemana() {
+
+    const lista = document.getElementById("lista-semana");
+
+    lista.innerHTML = "";
+
+    const inicio = inicioDaSemana();
+
+    grupos.forEach(function (grupo) {
+
+        const item = document.createElement("li");
+
+        const treinoSalvo = localStorage.getItem("treino-" + grupo);
+
+        if (treinoSalvo !== null) {
+
+            const dataTreino = new Date(treinoSalvo);
+
+            if (dataTreino >= inicio) {
+                item.textContent = nomes[grupo] + " - Treinado ✓";
+            } else {
+                item.textContent = nomes[grupo] + " - Não treinado";
+            }
+
+        } else {
+            item.textContent = nomes[grupo] + " - Não treinado";
+        }
+
+        lista.appendChild(item);
+    });
+}
+
+const botoes = document.querySelectorAll(".botao-treino");
+
+botoes.forEach(function (botao) {
+
+    botao.addEventListener("click", function () {
+
+        const grupo = botao.dataset.grupo;
+
+        const treinoSalvo = localStorage.getItem("treino-" + grupo);
+
+        if (treinoSalvo !== null) {
+
+            const dataTreino = new Date(treinoSalvo);
+            const agora = new Date();
+
+            if (agora - dataTreino < tempoDescanso) {
+
+                localStorage.removeItem("treino-" + grupo);
+
+                atualizarGrupo(grupo);
+                atualizarSemana();
+
+                return;
+            }
+        }
+
         const agora = new Date();
 
-        if (agora - dataTreino < tempoDescanso) {
-            localStorage.removeItem("treinoPeito");
-            atualizarPeito();
-            return;
-        }
-    }
+        localStorage.setItem(
+            "treino-" + grupo,
+            agora.toISOString()
+        );
 
-    const agora = new Date();
-
-    localStorage.setItem(
-        "treinoPeito",
-        agora.toISOString()
-    );
-
-    atualizarPeito();
+        atualizarGrupo(grupo);
+        atualizarSemana();
+    });
 });
 
-atualizarPeito();
+grupos.forEach(function (grupo) {
+    atualizarGrupo(grupo);
+});
+
+atualizarSemana();
