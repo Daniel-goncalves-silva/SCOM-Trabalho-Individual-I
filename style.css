@@ -153,3 +153,10 @@ footer {
 .botao-treino:hover {
     background-color: #1d4ed8;
 }
+#lista-semana {
+    padding-left: 20px;
+}
+
+#lista-semana li {
+    margin-bottom: 6px;
+}
