@@ -19,7 +19,7 @@
         <nav aria-label="Navegação principal">
             <a href="#inicio">Início</a>
             <a href="#treinos">Treinos</a>
-            <a href="#progresso">Progresso</a>
+            <a href="#semana">Minha semana</a>
         </nav>
     </header>
 
@@ -29,8 +29,8 @@
             <h2>Organize seus treinos</h2>
 
             <p>
-                Uma forma simples de visualizar os principais grupos
-                musculares e organizar sua rotina de treino.
+                Veja sugestões de exercícios, marque os grupos já treinados
+                e acompanhe sua semana de treino.
             </p>
         </section>
 
@@ -45,40 +45,36 @@
             <div class="treinos-grid">
 
                 <article>
-    <h3>Peito</h3>
+                    <h3>Peito</h3>
 
-    <figure>
-        <img
-            src="imagens_otimizadas/peito.webp"
-            alt="Musculatura do peito destacada em vermelho"
-            width="800"
-            height="600"
-            loading="lazy"
-        >
+                    <figure>
+                        <img
+                            src="imagens_otimizadas/peito.webp"
+                            alt="Musculatura do peito destacada em vermelho"
+                            width="800"
+                            height="600"
+                            loading="lazy"
+                        >
 
-        <figcaption>
-            Região peitoral.
-        </figcaption>
-    </figure>
+                        <figcaption>Região peitoral.</figcaption>
+                    </figure>
 
-    <h4>Sugestões de exercícios</h4>
+                    <h4>Sugestões de exercícios</h4>
 
-    <ul class="sugestoes">
-        <li>Supino reto</li>
-        <li>Supino inclinado</li>
-        <li>Crucifixo</li>
-    </ul>
+                    <ul class="sugestoes">
+                        <li>Supino reto</li>
+                        <li>Supino inclinado</li>
+                        <li>Crucifixo</li>
+                    </ul>
 
-    <p id="status-peito" class="status-treino">
-        Pode treinar
-    </p>
+                    <p id="status-peito" class="status-treino"></p>
+                    <p id="data-peito"></p>
 
-    <p id="data-peito"></p>
+                    <button class="botao-treino" data-grupo="peito">
+                        Marcar como treinado
+                    </button>
+                </article>
 
-    <button id="botao-peito" class="botao-treino">
-        Marcar como treinado
-    </button>
-</article>
                 <article>
                     <h3>Costas</h3>
 
@@ -91,10 +87,23 @@
                             loading="lazy"
                         >
 
-                        <figcaption>
-                            Região das costas.
-                        </figcaption>
+                        <figcaption>Região das costas.</figcaption>
                     </figure>
+
+                    <h4>Sugestões de exercícios</h4>
+
+                    <ul class="sugestoes">
+                        <li>Puxada frontal</li>
+                        <li>Remada baixa</li>
+                        <li>Remada curvada</li>
+                    </ul>
+
+                    <p id="status-costas" class="status-treino"></p>
+                    <p id="data-costas"></p>
+
+                    <button class="botao-treino" data-grupo="costas">
+                        Marcar como treinado
+                    </button>
                 </article>
 
                 <article>
@@ -109,10 +118,23 @@
                             loading="lazy"
                         >
 
-                        <figcaption>
-                            Principais músculos das pernas.
-                        </figcaption>
+                        <figcaption>Principais músculos das pernas.</figcaption>
                     </figure>
+
+                    <h4>Sugestões de exercícios</h4>
+
+                    <ul class="sugestoes">
+                        <li>Agachamento</li>
+                        <li>Leg press</li>
+                        <li>Cadeira extensora</li>
+                    </ul>
+
+                    <p id="status-pernas" class="status-treino"></p>
+                    <p id="data-pernas"></p>
+
+                    <button class="botao-treino" data-grupo="pernas">
+                        Marcar como treinado
+                    </button>
                 </article>
 
                 <article>
@@ -127,10 +149,23 @@
                             loading="lazy"
                         >
 
-                        <figcaption>
-                            Região dos ombros.
-                        </figcaption>
+                        <figcaption>Região dos ombros.</figcaption>
                     </figure>
+
+                    <h4>Sugestões de exercícios</h4>
+
+                    <ul class="sugestoes">
+                        <li>Desenvolvimento</li>
+                        <li>Elevação lateral</li>
+                        <li>Elevação frontal</li>
+                    </ul>
+
+                    <p id="status-ombros" class="status-treino"></p>
+                    <p id="data-ombros"></p>
+
+                    <button class="botao-treino" data-grupo="ombros">
+                        Marcar como treinado
+                    </button>
                 </article>
 
                 <article>
@@ -145,10 +180,23 @@
                             loading="lazy"
                         >
 
-                        <figcaption>
-                            Região do bíceps e antebraço.
-                        </figcaption>
+                        <figcaption>Região do bíceps e antebraço.</figcaption>
                     </figure>
+
+                    <h4>Sugestões de exercícios</h4>
+
+                    <ul class="sugestoes">
+                        <li>Rosca direta</li>
+                        <li>Rosca martelo</li>
+                        <li>Rosca inversa</li>
+                    </ul>
+
+                    <p id="status-bracos" class="status-treino"></p>
+                    <p id="data-bracos"></p>
+
+                    <button class="botao-treino" data-grupo="bracos">
+                        Marcar como treinado
+                    </button>
                 </article>
 
                 <article>
@@ -163,10 +211,23 @@
                             loading="lazy"
                         >
 
-                        <figcaption>
-                            Musculatura do tríceps.
-                        </figcaption>
+                        <figcaption>Musculatura do tríceps.</figcaption>
                     </figure>
+
+                    <h4>Sugestões de exercícios</h4>
+
+                    <ul class="sugestoes">
+                        <li>Tríceps pulley</li>
+                        <li>Tríceps francês</li>
+                        <li>Tríceps testa</li>
+                    </ul>
+
+                    <p id="status-triceps" class="status-treino"></p>
+                    <p id="data-triceps"></p>
+
+                    <button class="botao-treino" data-grupo="triceps">
+                        Marcar como treinado
+                    </button>
                 </article>
 
                 <article>
@@ -181,36 +242,48 @@
                             loading="lazy"
                         >
 
-                        <figcaption>
-                            Região abdominal.
-                        </figcaption>
+                        <figcaption>Região abdominal.</figcaption>
                     </figure>
+
+                    <h4>Sugestões de exercícios</h4>
+
+                    <ul class="sugestoes">
+                        <li>Abdominal</li>
+                        <li>Prancha</li>
+                        <li>Elevação de pernas</li>
+                    </ul>
+
+                    <p id="status-abdomen" class="status-treino"></p>
+                    <p id="data-abdomen"></p>
+
+                    <button class="botao-treino" data-grupo="abdomen">
+                        Marcar como treinado
+                    </button>
                 </article>
 
             </div>
 
         </section>
 
-        <section id="progresso">
+        <section id="semana">
 
-            <h2>Meu progresso</h2>
+            <h2>Minha semana</h2>
 
             <p>
-                Registre seus treinos e acompanhe sua evolução
-                ao longo do tempo.
+                Veja quais grupos musculares você já treinou nesta semana.
             </p>
+
+            <ul id="lista-semana"></ul>
 
         </section>
 
         <aside>
-
             <h2>Dica de treino</h2>
 
             <p>
-                Organização e constância ajudam a manter uma rotina
-                de treinamento mais eficiente.
+                O intervalo de 48 horas é utilizado neste site apenas
+                como referência para organização dos treinos.
             </p>
-
         </aside>
 
     </main>
@@ -218,9 +291,9 @@
     <footer>
         <p>Meu Treino - SCOM 2026</p>
     </footer>
-    
-<script src="script.js"></script>
-    
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
