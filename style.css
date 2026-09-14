@@ -134,3 +134,22 @@ footer {
         width: 94%;
     }
 }
+.sugestoes {
+    padding-left: 20px;
+}
+
+.status-treino {
+    font-weight: bold;
+}
+
+.botao-treino {
+    background-color: var(--azul);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.botao-treino:hover {
+    background-color: #1d4ed8;
+}
