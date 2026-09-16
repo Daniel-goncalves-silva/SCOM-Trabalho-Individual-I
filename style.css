@@ -160,3 +160,7 @@ footer {
 #lista-semana li {
     margin-bottom: 6px;
 }
+.botao-treino:focus-visible {
+    outline: 3px solid #111;
+    outline-offset: 3px;
+}
